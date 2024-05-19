@@ -8,6 +8,7 @@ import fs from "fs";
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.static("public"));
 
 // Ensure the directory exists
 const dir = "./public/images";
@@ -77,6 +78,26 @@ app.post("/upload", upload.single("image"), (req, res) => {
 
     console.log("Query executed successfully. Result:", result);
     return res.json({ Status: "Success" });
+  });
+});
+
+// app.get("/", (req, res) => {
+//   const sql = "SELECT * FROM Residents_Information";
+//   db.query(sql, (err, result) => {
+//     if (err) return res.json("Error");
+//     return res.json(result);
+//   });
+// });
+
+app.get("/", (req, res) => {
+  const sql = "SELECT * FROM Residents_Information";
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log("Error executing SQL query:", err);
+      return res.json("Error");
+    }
+    console.log("Query executed successfully.");
+    return res.json(result);
   });
 });
 
