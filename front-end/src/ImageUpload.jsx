@@ -13,6 +13,7 @@ function ImageUpload() {
     axios
       .get("http://localhost:3001/")
       .then((res) => {
+        console.log(res.data); // Check if data is being fetched
         setData(res.data[0]);
       })
       .catch((err) => console.log(err));
@@ -42,7 +43,7 @@ function ImageUpload() {
       </form>{" "}
       <br />
       <img
-        src={`http://localhost:3001/images/` + data.image}
+        src={`http://localhost:3001/images/${data.image}`}
         alt="Resident"
         style={{ width: "500px", height: "750px" }}
       />
