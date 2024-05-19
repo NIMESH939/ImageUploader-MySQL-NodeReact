@@ -6,6 +6,7 @@ import path from "path";
 import fs from "fs";
 
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 app.use(express.static("public"));
@@ -80,14 +81,6 @@ app.post("/upload", upload.single("image"), (req, res) => {
     return res.json({ Status: "Success" });
   });
 });
-
-// app.get("/", (req, res) => {
-//   const sql = "SELECT * FROM Residents_Information";
-//   db.query(sql, (err, result) => {
-//     if (err) return res.json("Error");
-//     return res.json(result);
-//   });
-// });
 
 app.get("/", (req, res) => {
   const sql = "SELECT * FROM Residents_Information";
